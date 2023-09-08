@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+</head>
+<body>
+    <script>
+               
+        let round = 1;
+        let playerScore = 0;
+        let computerScore = 0;
+
+        console.log("Welcome to Rock, Paper, Scissors! \n\tWe'll be playing five rounds to decide the overall winner.");
+        
+        function getPlayerSelection(){
+            console.log("####### -- Time for round " + round + " --  #######"); 
+            let playerSelection = prompt("Please type your choice: Rock, Paper or Scissors").toLowerCase(); 
+            return playerSelection;
+         
+       }
+       
+        function getComputerSelection() {
+            var array = ["rock", "paper", "scissors"];
+            var index = Math.floor(Math.random() * array.length);
+            var computerSelection = array[index];
+            return computerSelection;
+        }        
+
+        function game(){
+
+        let playerSelection = getPlayerSelection();
+        console.log("You have selected " + playerSelection[0].toUpperCase() + playerSelection.substring(1)); 
+
+        let computerSelection = getComputerSelection();
+        console.log("The computer picked " + computerSelection + " so, we have " + playerSelection + " versus " + computerSelection) + "!";
+
+        let selections = playerSelection + '-' + computerSelection;
+        playRound();        
+      
+        
+        function playRound(playerSelection, computerSelection){
+
+                    
+            switch(selections){
+                case "rock-rock":
+                case "paper-paper":
+                case "scissors-scissors":
+                    console.log("This round is a draw");
+                    ++round;
+                    console.log("At the end of this round the scores are " + playerScore + " for you and " + computerScore + " for the computer!");
+                    break;                    
+                case "rock-scissors":
+                case "paper-rock":
+                case "scissors-paper":
+                    console.log("You win this round!");
+                    ++round;
+                    playerScore++;
+                    console.log("At the end of this round the scores are " + playerScore + " for you and " + computerScore + " for the computer!");
+                    break;
+                case "rock-paper":
+                case "paper-scissors":
+                case "scissors-rock":  
+                    console.log("The computer wins this round!");
+                    ++round;
+                    computerScore++;
+                    console.log("At the end of this round the scores are " + playerScore + " for you and " + computerScore + " for the computer!");
+                    break;
+                default:
+                    console.log("Houston we have some kind of problem here...let's try again!") 
+                    ;  
+            }  
+        
+                       
+        }  
+
+    }   
+        do game()
+        while (round <=5);       
+
+              
+        console.log("####### -- Time for the final results --  #######");     
+        console.log("Your final score is " + playerScore + ". The Computer scored " + computerScore + ".")
+        
+        if (parseInt(playerScore) > parseInt(computerScore)) {
+            console.log("You win! Well Done!")
+        } else if (parseInt(computerScore) > parseInt(playerScore)) {
+            console.log("Good try but you lose this time!")
+        } else {
+            console.log("Good game - it's was a draw!")
+        }
+
+
+        console.log("Thanks for playing today. I hope you enjoyed the game!")   
+
+      
+    
+    
+    </script>
+    
+</body>
+</html>
